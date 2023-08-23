@@ -9,8 +9,8 @@ const TaskList = () => {
 
   const loadTasks = async () => {
     try {
-      // const res = await fetch('http://localhost:4000/tasks/');
-      const res = await fetch('https://todoapp-pern:10000/tasks/');
+      const res = await fetch('http://localhost:4000/tasks/');
+      // const res = await fetch('https://todoapp-pern:10000/tasks/');
       const data = await res.json();
 
       const updateLoadTasks = data.map(task => ({...task, isComplete: task.iscomplete}));
@@ -44,8 +44,8 @@ const TaskList = () => {
 
       setTaskList(updatedTaskList);
 
-      // await fetch(`http://localhost:4000/tasks/${id}`, {
-        await fetch(`https://todoapp-pern:10000/tasks/${id}`, {
+      await fetch(`http://localhost:4000/tasks/${id}`, {
+        // await fetch(`https://todoapp-pern:10000/tasks/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ iscomplete: !isComplete }),
