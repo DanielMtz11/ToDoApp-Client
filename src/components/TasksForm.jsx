@@ -2,8 +2,8 @@ import React from 'react';
 import {Card, CardContent, Grid, Typography,TextField, Button, CircularProgress} from '@mui/material';
 import { useNavigate} from 'react-router-dom'  //Navigate
 import {useState} from 'react';
-import shadows from '@mui/material/styles/shadows';
 
+const apiURL = process.env.REACT_APP_API_URL;
 
 const TaskForm = () => {
 
@@ -22,7 +22,7 @@ const TaskForm = () => {
 
         setLoading(true);
 
-        const res = await fetch("http://localhost:4000/tasks",{
+        const res = await fetch(`${apiURL}/tasks`,{
             method:'POST',
             body: JSON.stringify(task),
             //para decirle que es un objeto JSON:

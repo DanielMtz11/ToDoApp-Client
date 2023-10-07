@@ -4,13 +4,15 @@ import { styled } from '@mui/material/styles';
 import CardContent from '@mui/material/CardContent';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+const apiURL = process.env.REACT_APP_API_URL;
+
 const TaskList = () => {
   const [taskList, setTaskList] = useState([]);
 
   const loadTasks = async () => {
     try {
-      const res = await fetch('http://localhost:4000/tasks/');
-      // const res = await fetch('https://todoapp-pern:10000/tasks/');
+      // const res = await fetch('http://localhost:4000/tasks/');
+      const res = await fetch(`${apiURL}/tasks`);
       const data = await res.json();
 
       const updateLoadTasks = data.map(task => ({...task, isComplete: task.iscomplete}));
@@ -26,7 +28,7 @@ const TaskList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:4000/tasks/${id}`, {
+      await fetch(`${apiURL}tasks/${id}`, {
         method: 'DELETE',
       });
 
@@ -44,8 +46,7 @@ const TaskList = () => {
 
       setTaskList(updatedTaskList);
 
-      await fetch(`http://localhost:4000/tasks/${id}`, {
-        // await fetch(`https://todoapp-pern:10000/tasks/${id}`, {
+      await fetch(`${apiURL}/tasks/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ iscomplete: !isComplete }),
