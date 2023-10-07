@@ -28,7 +28,7 @@ const TaskList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`${apiURL}tasks/${id}`, {
+      await fetch(`${apiURL}/tasks/${id}`, {
         method: 'DELETE',
       });
 
